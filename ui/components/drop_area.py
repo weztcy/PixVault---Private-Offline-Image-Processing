@@ -168,7 +168,7 @@ class DropArea(QWidget):
         # =====================
 
         self.formats_label = QLabel(
-            "JPG  ·  PNG  ·  WEBP  ·  AVIF  ·  "
+            "JPG / JPEG  ·  PNG  ·  WEBP  ·  AVIF  ·  "
             "GIF  ·  BMP  ·  TIFF  ·  "
             "HEIC  ·  HEIF  ·  ICO  ·  SVG"
         )
