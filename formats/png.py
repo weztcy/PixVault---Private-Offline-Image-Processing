@@ -9,7 +9,7 @@ import struct
 import zlib
 from pathlib import Path
 
-from formats import BaseEncoder
+from formats import BaseEncoder, get_pixvault_compression
 
 BIT_DEPTH_INFO_KEY = "_pixvault_target_bit_depth"
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
@@ -98,7 +98,7 @@ class PNGEncoder(BaseEncoder):
 
         # Target size metadata is handled by TargetSizeOptimizer before final save.
 
-        compression = image.info.get("compression", {})
+        compression = get_pixvault_compression(image)
         if compression.get("mode") == "target_size":
             settings["compression"] = 9
 

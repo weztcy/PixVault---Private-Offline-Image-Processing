@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from formats import get_pixvault_compression
 from export.naming import NamingEngine
 from formats.encoder import EncoderManager
 
@@ -39,7 +40,7 @@ class Exporter:
 
         export_settings["format"] = format_name
 
-        compression = getattr(image, "info", {}).get("compression", {})
+        compression = get_pixvault_compression(image)
         if compression:
             export_settings.update(compression)
 

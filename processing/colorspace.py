@@ -66,14 +66,14 @@ class ColorSpaceProcessor:
         )
 
         result = ImageCms.applyTransform(image, transform)
-        result.info["icc_profile"] = ImageCms.ImageCmsProfile(dst).tobytes()
+        result.info["icc_profile"] = dst.tobytes()
         return result
 
     def convert_grayscale(self, image):
         result = image.convert("L")
         try:
             profile = self.load_profile("grayscale")
-            result.info["icc_profile"] = ImageCms.ImageCmsProfile(profile).tobytes()
+            result.info["icc_profile"] = profile.tobytes()
         except FileNotFoundError:
             pass
         return result

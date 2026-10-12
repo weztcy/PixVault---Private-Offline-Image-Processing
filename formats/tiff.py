@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from formats import BaseEncoder
+from formats import BaseEncoder, get_pixvault_compression
 
 BIT_DEPTH_INFO_KEY = "_pixvault_target_bit_depth"
 
@@ -122,7 +122,7 @@ class TIFFEncoder(BaseEncoder):
         depth = int(settings.get("bit_depth", image.info.get(BIT_DEPTH_INFO_KEY, 8)))
         if depth not in (8, 16, 32):
             raise ValueError("TIFF bit depth must be 8, 16 or 32 bits per channel.")
-        compression_info = image.info.get("compression", {})
+        compression_info = get_pixvault_compression(image)
         if compression_info.get("mode") == "target_size":
             settings["compression"] = "deflate"
 

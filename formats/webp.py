@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from formats import BaseEncoder
+from formats import BaseEncoder, get_pixvault_compression
 
 
 class WEBPEncoder(BaseEncoder):
@@ -12,7 +12,7 @@ class WEBPEncoder(BaseEncoder):
 
         # Target size metadata is handled by TargetSizeOptimizer before final save.
 
-        compression = image.info.get("compression", {})
+        compression = get_pixvault_compression(image)
         if compression.get("mode") == "quality":
             settings["quality"] = compression.get(
                 "quality", settings.get("quality", 85)

@@ -2,7 +2,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from formats import BaseEncoder
+from formats import BaseEncoder, get_pixvault_compression
 
 
 class JPEGEncoder(BaseEncoder):
@@ -13,7 +13,7 @@ class JPEGEncoder(BaseEncoder):
 
         # Target size metadata is handled by TargetSizeOptimizer before final save.
 
-        compression = image.info.get("compression", {})
+        compression = get_pixvault_compression(image)
         if compression.get("mode") == "quality":
             settings["quality"] = compression.get(
                 "quality", settings.get("quality", 85)
