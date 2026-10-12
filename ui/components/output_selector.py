@@ -130,6 +130,10 @@ class OutputSelector(QWidget):
 
         self.custom_radio.toggled.connect(self.on_mode_toggled)
 
+        # The browse action only applies to a user-chosen folder;
+        # start with the default mode's state (no browse button).
+        self.update_browse_visibility()
+
     # =====================
     # PREMIUM HEADER
     # =====================
@@ -415,6 +419,10 @@ class OutputSelector(QWidget):
 
         self.copy_button.setText("Copy Path")
 
+        # Browse is only meaningful for a custom folder; the default
+        # location is managed by PixVault itself.
+        self.update_browse_visibility()
+
         # Selected mode information
 
         if self.custom_radio.isChecked():
@@ -480,6 +488,15 @@ class OutputSelector(QWidget):
 
     def get_current_folder(self):
         return self.get_output_folder()
+
+    # =====================
+    # BROWSE BUTTON
+    # =====================
+
+    def update_browse_visibility(self):
+        # Show the folder picker only when the user has chosen
+        # Custom Folder mode. The default mode is read-only.
+        self.browse_button.setVisible(self.custom_radio.isChecked())
 
     # =====================
     # SET DEFAULT FOLDER
