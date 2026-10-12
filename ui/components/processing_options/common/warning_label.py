@@ -3,6 +3,8 @@
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QLabel
 
+from ui.styles.processing_fields_style import apply_warning_label_style
+
 
 class WarningLabel(QLabel):
     def __init__(self, parent=None):
@@ -11,13 +13,7 @@ class WarningLabel(QLabel):
         self.setWordWrap(True)
         self.setAlignment(Qt.AlignmentFlag.AlignLeft)
         self.hide()
-        self.setStyleSheet("""
-            QLabel#processing_warning {
-                background-color: #443820; color: #FCD34D;
-                border: 1px solid #77602A; border-radius: 8px;
-                padding: 10px; font-family: 'Segoe UI'; font-size: 11px;
-            }
-        """)
+        apply_warning_label_style(self)
 
     def show_warning(self, message):
         if not message:

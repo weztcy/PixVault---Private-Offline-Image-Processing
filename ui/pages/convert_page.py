@@ -25,12 +25,13 @@ from ui.components.output_selector import OutputSelector
 from ui.components.processing_options.common.format_support_info import (
     FormatSupportInfo,
 )
+from ui.pages.format_labels import JPEG_DISPLAY_LABEL, output_format_key
 from ui.styles.pixvault_theme import apply_page_theme, role
 
 
 class ConvertPage(QWidget):
     OUTPUT_FORMATS = [
-        "JPEG",
+        JPEG_DISPLAY_LABEL,
         "PNG",
         "WEBP",
         "AVIF",
@@ -315,7 +316,7 @@ class ConvertPage(QWidget):
         self.batch_service.processing_error.connect(self.convert_error)
 
     def change_format(self, format_name):
-        self.format_options.set_format(format_name)
+        self.format_options.set_format(output_format_key(format_name))
         self.format_options.reset()
         self.format_settings = self.format_options.get_settings()
         self.update_queue_state()
@@ -376,7 +377,7 @@ class ConvertPage(QWidget):
         return {
             "operations": [],
             "output": {
-                "format": self.format_box.currentText(),
+                "format": output_format_key(self.format_box.currentText()),
                 "options": self.format_settings.copy(),
             },
         }

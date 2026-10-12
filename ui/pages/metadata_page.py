@@ -31,6 +31,7 @@ from ui.components.processing_options.common.format_support_info import (
     FormatSupportInfo,
 )
 from ui.components.processing_options.metadata_options import MetadataOptions
+from ui.pages.format_labels import JPEG_DISPLAY_LABEL, output_format_key
 from ui.styles.pixvault_theme import apply_page_theme, role
 
 
@@ -38,7 +39,7 @@ class MetadataPage(QWidget):
     """Responsive metadata editor using the same layout as ConvertPage."""
 
     # These are output formats with raster encoders; HEIC requires pillow-heif.
-    OUTPUT_FORMATS = ["Same as source", "JPEG", "PNG", "TIFF", "HEIC"]
+    OUTPUT_FORMATS = ["Same as source", JPEG_DISPLAY_LABEL, "PNG", "TIFF", "HEIC"]
     SOURCE_FORMATS = {
         ".jpg": "JPEG",
         ".jpeg": "JPEG",
@@ -425,7 +426,11 @@ class MetadataPage(QWidget):
 
     def selected_output_format(self):
         choice = self.format_box.currentText()
-        return self.source_format() if choice == "Same as source" else choice.upper()
+        return (
+            self.source_format()
+            if choice == "Same as source"
+            else output_format_key(choice)
+        )
 
     def change_format(self, _format_name):
         output_format = self.selected_output_format()

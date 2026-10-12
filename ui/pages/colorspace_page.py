@@ -37,13 +37,14 @@ from ui.components.processing_options.colorspace_options import ColorSpaceOption
 from ui.components.processing_options.common.format_support_info import (
     FormatSupportInfo,
 )
+from ui.pages.format_labels import JPEG_DISPLAY_LABEL, output_format_key
 from ui.styles.pixvault_theme import apply_page_theme, role
 
 
 class ColorSpacePage(QWidget):
     """Color conversion page with the ConvertPage layout and batch behavior."""
 
-    OUTPUT_FORMATS = ["Same as source", "JPEG", "PNG", "TIFF"]
+    OUTPUT_FORMATS = ["Same as source", JPEG_DISPLAY_LABEL, "PNG", "TIFF"]
 
     SOURCE_FORMATS = {
         ".jpg": "JPEG",
@@ -643,7 +644,11 @@ class ColorSpacePage(QWidget):
 
         choice = self.format_box.currentText()
 
-        return self.source_format() if choice == "Same as source" else choice.upper()
+        return (
+            self.source_format()
+            if choice == "Same as source"
+            else output_format_key(choice)
+        )
 
     def disable_unimplemented_targets(self):
         """All ICC targets are enabled when ICC profiles are available."""

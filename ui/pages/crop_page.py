@@ -31,6 +31,7 @@ from ui.components.processing_options.common.format_support_info import (
     FormatSupportInfo,
 )
 from ui.components.processing_options.crop_options import CropOptions
+from ui.pages.format_labels import JPEG_DISPLAY_LABEL, output_format_key
 from ui.styles.pixvault_theme import apply_page_theme, role
 
 
@@ -41,7 +42,7 @@ class CropPage(QWidget):
     # pipeline needs one explicit output format, even for keep-source batches.
     OUTPUT_FORMATS = [
         "Same as source",
-        "JPEG",
+        JPEG_DISPLAY_LABEL,
         "PNG",
         "WEBP",
         "BMP",
@@ -401,7 +402,9 @@ class CropPage(QWidget):
     def selected_output_format(self):
         selection = self.format_box.currentText()
         return (
-            self.source_format() if selection == "Same as source" else selection.upper()
+            self.source_format()
+            if selection == "Same as source"
+            else output_format_key(selection)
         )
 
     def change_format(self, _format_name):

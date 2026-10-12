@@ -7,6 +7,8 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
+from ui.styles.format_fields_style import apply_checkbox_field_style
+
 
 class CheckboxField(QWidget):
     value_changed = Signal(bool)
@@ -99,106 +101,4 @@ class CheckboxField(QWidget):
     # =====================
 
     def apply_styles(self):
-        self.setStyleSheet(
-            """
-            /* =========================
-               FIELD CONTAINER
-            ========================= */
-
-            QFrame#checkbox_field_container {
-                background-color: #1b2940;
-                border: 1px solid #304259;
-                border-radius: 10px;
-            }
-
-            QFrame#checkbox_field_container:hover {
-                background-color: #203149;
-                border: 1px solid #426273;
-            }
-
-            /* =========================
-               CHECKBOX TEXT
-            ========================= */
-
-            QCheckBox#premium_checkbox {
-                background: transparent;
-                border: none;
-
-                color: #d5deea;
-
-                font-family: "Segoe UI";
-                font-size: 12px;
-                font-weight: 500;
-
-                spacing: 12px;
-            }
-
-            QCheckBox#premium_checkbox:hover {
-                color: #f8fafc;
-            }
-
-            /* =========================
-               UNCHECKED INDICATOR
-            ========================= */
-
-            QCheckBox#premium_checkbox::indicator {
-                width: 18px;
-                height: 18px;
-
-                background-color: #101b2d;
-
-                border: 1px solid #50647c;
-                border-radius: 5px;
-            }
-
-            /* =========================
-               INDICATOR HOVER
-            ========================= */
-
-            QCheckBox#premium_checkbox::indicator:hover {
-                background-color: #263b4d;
-                border: 1px solid #5eead4;
-            }
-
-            /* =========================
-               CHECKED INDICATOR
-            ========================= */
-
-            QCheckBox#premium_checkbox::indicator:checked {
-                background-color: #5eead4;
-                border: 1px solid #5eead4;
-                border-radius: 5px;
-            }
-
-            QCheckBox#premium_checkbox::indicator:checked:hover {
-                background-color: #99f6e4;
-                border: 1px solid #99f6e4;
-            }
-
-            /* =========================
-               DISABLED STATE
-            ========================= */
-
-            QFrame#checkbox_field_container:disabled {
-                background-color: #151e2d;
-                border: 1px solid #253348;
-            }
-
-            QCheckBox#premium_checkbox:disabled {
-                color: #64748b;
-            }
-
-            QCheckBox#premium_checkbox::indicator:disabled {
-                background-color: #202b3b;
-                border: 1px solid #354459;
-            }
-
-            /* =========================
-               KEYBOARD FOCUS
-            ========================= */
-
-            QCheckBox#premium_checkbox::indicator:focus {
-                border: 2px solid #5eead4;
-            }
-            """
-        )
+        apply_checkbox_field_style(self)

@@ -30,6 +30,7 @@ from ui.components.processing_options.common.format_support_info import (
     FormatSupportInfo,
 )
 from ui.components.processing_options.resize_options import ResizeOptions
+from ui.pages.format_labels import JPEG_DISPLAY_LABEL, output_format_key
 from ui.styles.pixvault_theme import apply_page_theme, role
 
 
@@ -40,7 +41,7 @@ class ResizePage(QWidget):
     # "Same as source" is available when the batch has one supported format.
     OUTPUT_FORMATS = [
         "Same as source",
-        "JPEG",
+        JPEG_DISPLAY_LABEL,
         "PNG",
         "WEBP",
         "AVIF",
@@ -442,7 +443,9 @@ class ResizePage(QWidget):
     def selected_output_format(self):
         selection = self.format_box.currentText()
         return (
-            self.source_format() if selection == "Same as source" else selection.upper()
+            self.source_format()
+            if selection == "Same as source"
+            else output_format_key(selection)
         )
 
     def build_config(self):

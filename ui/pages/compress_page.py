@@ -25,13 +25,14 @@ from ui.components.processing_options.common.format_support_info import (
     FormatSupportInfo,
 )
 from ui.components.processing_options.compression_options import CompressionOptions
+from ui.pages.format_labels import JPEG_DISPLAY_LABEL, output_format_key
 from ui.styles.pixvault_theme import apply_page_theme, role
 
 
 class CompressPage(QWidget):
     """PixVault compression workspace, styled consistently with ConvertPage."""
 
-    OUTPUT_FORMATS = ["Same as source", "JPEG", "PNG", "WEBP", "TIFF"]
+    OUTPUT_FORMATS = ["Same as source", JPEG_DISPLAY_LABEL, "PNG", "WEBP", "TIFF"]
 
     SOURCE_FORMATS = {
         ".jpg": "JPEG",
@@ -547,7 +548,7 @@ class CompressPage(QWidget):
         selection = self.format_box.currentText()
 
         if selection != "Same as source":
-            return selection.upper()
+            return output_format_key(selection)
 
         return self.source_format()
 

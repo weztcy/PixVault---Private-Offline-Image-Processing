@@ -3,6 +3,8 @@
 from PySide6.QtCore import Signal
 from PySide6.QtWidgets import QLabel, QVBoxLayout, QWidget
 
+from ui.styles.processing_fields_style import apply_checkbox_group_field_style
+
 from .checkbox_field import CheckboxField
 
 
@@ -27,9 +29,4 @@ class CheckboxGroupField(QWidget):
             self.checkboxes[text] = field.checkbox
             self.layout.addWidget(field)
             field.value_changed.connect(lambda *_args: self.changed.emit())
-        self.setStyleSheet("""
-            QLabel#checkbox_group_title {
-                background: transparent; border: none; color: #CBD5E1;
-                font-family: 'Segoe UI'; font-size: 12px; font-weight: 600;
-            }
-        """)
+        apply_checkbox_group_field_style(self)
