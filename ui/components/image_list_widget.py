@@ -7,7 +7,7 @@ through thousands of images stays responsive.
 
 from pathlib import Path
 
-from PySide6.QtCore import QRect, QRectF, QSize, Qt, Signal
+from PySide6.QtCore import QEvent, QRect, QRectF, QSize, Qt, QTimer, Signal
 from PySide6.QtGui import (
     QColor,
     QFont,
@@ -37,17 +37,20 @@ from PySide6.QtWidgets import (
 from ui.styles.image_list_style import apply_image_list_style
 
 ICON_GLYPH = "\u25a7"
-SORT_GLYPH = "\u2195"
-REMOVE_GLYPH = "\u2715"
-SELECTION_GLYPH = "\u25cf"
+SORT_GLYPH = "↕"
+REMOVE_GLYPH = "✖"
+SELECTION_GLYPH = "●"
 
-TILE_WIDTH = 148
-TILE_HEIGHT = 86
+TILE_HEIGHT = 70
 GRID_SPACING = 10
+MAX_COLUMNS = 5
+MIN_TILE_WIDTH = 100
 
 
 def index_text(index):
     return f"FILE {index + 1:02d}"
+
+
 
 
 class ImageTileDelegate(QStyledItemDelegate):
@@ -58,7 +61,10 @@ class ImageTileDelegate(QStyledItemDelegate):
         self.owner = owner
 
     def sizeHint(self, option, index):
-        return QSize(TILE_WIDTH, TILE_HEIGHT)
+        return QSize(
+            self.owner.calculate_tile_width(),
+            TILE_HEIGHT
+        )
 
     def paint(self, painter, option, index):
         row = index.row()
@@ -70,7 +76,12 @@ class ImageTileDelegate(QStyledItemDelegate):
         painter.save()
         painter.setRenderHint(QPainter.RenderHint.Antialiasing, True)
 
-        rect = option.rect.adjusted(2, 2, -2, -2)
+        rect = option.rect.adjusted(
+            GRID_SPACING // 2,
+            2,
+            -GRID_SPACING // 2,
+            -2
+        )
         hovered = bool(option.state & QStyle.StateFlag.State_MouseOver)
         selected = self.owner.selected_index == row
 
@@ -133,9 +144,44 @@ class ImageListWidget(QWidget):
     image_selected = Signal(Path)
     images_changed = Signal(list)
 
-    MAX_COLUMNS = 6
-    MIN_TILE_WIDTH = TILE_WIDTH
+    MAX_COLUMNS = 5
+    MIN_TILE_WIDTH = 100
     GRID_SPACING = GRID_SPACING
+
+    def calculate_tile_width(self):
+        if not hasattr(self, "list"):
+            return self.MIN_TILE_WIDTH
+
+        cell_width = self.list.viewport().width() // MAX_COLUMNS
+
+        return max(cell_width - GRID_SPACING, self.MIN_TILE_WIDTH)
+
+
+    def update_grid_size(self):
+
+        # Floor so exactly one row of MAX_COLUMNS cells fits inside the
+        # viewport width (the delegate insets each rect by GRID_SPACING / 2
+        # to draw the gaps between the tiles). The floor leaves at most a
+        # 4 px right edge on odd viewport widths, which is not visible.
+        cell_width = max(
+            self.list.viewport().width() // MAX_COLUMNS,
+            self.MIN_TILE_WIDTH + GRID_SPACING,
+        )
+
+        cell_height = TILE_HEIGHT + GRID_SPACING
+
+        self.list.setGridSize(
+            QSize(
+                cell_width,
+                cell_height,
+            )
+        )
+        # Force the view to re-flow items immediately so the new grid
+        # takes effect for item placement and painting.
+        self.list.doItemsLayout()
+
+        self.list.viewport().update()
+
 
     def __init__(self):
         super().__init__()
@@ -143,6 +189,13 @@ class ImageListWidget(QWidget):
         self.images = []
         self.selected_index = None
         self.selected_image = None
+
+        # The list viewport gets its real size after the surrounding layout
+        # pass; debounce so the grid follows the actual viewport width.
+        self._grid_timer = QTimer(self)
+        self._grid_timer.setSingleShot(True)
+        self._grid_timer.setInterval(0)
+        self._grid_timer.timeout.connect(self.update_grid_size)
 
         self.setObjectName("image_list_widget")
 
@@ -204,6 +257,7 @@ class ImageListWidget(QWidget):
 
         self.list = QListWidget()
         self.list.setObjectName("image_list_scroll")
+        self.list.viewport().installEventFilter(self)
         self.list.setFrameShape(QFrame.Shape.NoFrame)
         self.list.setFixedHeight(236)
         self.list.setViewMode(QListView.ViewMode.IconMode)
@@ -211,9 +265,7 @@ class ImageListWidget(QWidget):
         self.list.setResizeMode(QListView.ResizeMode.Adjust)
         self.list.setFlow(QListView.Flow.LeftToRight)
         self.list.setWrapping(True)
-        self.list.setGridSize(
-            QSize(TILE_WIDTH + GRID_SPACING, TILE_HEIGHT + GRID_SPACING)
-        )
+        self.update_grid_size()
         self.list.setUniformItemSizes(True)
         self.list.setWordWrap(False)
         self.list.setSelectionMode(QAbstractItemView.SelectionMode.NoSelection)
@@ -499,12 +551,25 @@ class ImageListWidget(QWidget):
 
     def resizeEvent(self, event):
         super().resizeEvent(event)
+
+        self.update_grid_size()
+
         if not hasattr(self, "button_layout"):
             return
+
         if self.width() < 470:
             self.button_layout.setDirection(QBoxLayout.Direction.TopToBottom)
         else:
             self.button_layout.setDirection(QBoxLayout.Direction.LeftToRight)
+
+    def eventFilter(self, watched, event):
+        # The list's own resize event fires before its viewport has been
+        # resized, so re-run the grid computation once the viewport reports
+        # its final dimensions.
+        if watched is self.list.viewport() and event.type() == QEvent.Type.Resize:
+            self._grid_timer.start()
+
+        return super().eventFilter(watched, event)
 
     # =====================
     # STYLING
