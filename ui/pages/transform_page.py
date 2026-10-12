@@ -9,7 +9,6 @@ from pathlib import Path
 from PySide6.QtCore import QEvent, Qt
 from PySide6.QtWidgets import (
     QBoxLayout,
-    QComboBox,
     QFrame,
     QHBoxLayout,
     QLabel,
@@ -23,6 +22,7 @@ from PySide6.QtWidgets import (
 
 from ui.components.drop_area import DropArea
 from ui.components.export_progress import ExportProgress
+from ui.components.format_options.common.dropdown_field import PremiumComboBox
 from ui.components.image_info_panel import ImageInfoPanel
 from ui.components.image_list_widget import ImageListWidget
 from ui.components.image_preview import ImagePreview
@@ -259,7 +259,7 @@ class TransformPage(QWidget):
         layout.addSpacing(5)
         layout.addWidget(self.text("OUTPUT FORMAT", "fieldTitle"))
 
-        self.format_box = role(QComboBox(), "field")
+        self.format_box = role(PremiumComboBox(), "field")
         self.format_box.setObjectName("transform_format_box")
         self.format_box.setMinimumHeight(44)
         self.format_box.setCursor(Qt.CursorShape.PointingHandCursor)
