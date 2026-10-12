@@ -49,7 +49,6 @@ core/
   svg_renderer.py
   worker.py
 docs/
-  error_testing.md
   PRD.md
 export/
   __init__.py
@@ -132,7 +131,6 @@ ui/
       crop_options.py
       dpi_options.py
       metadata_options.py
-      processing_card.py
       resize_options.py
       transform_options.py
     __init__.py
@@ -177,8 +175,6 @@ ui/
   sidebar.py
   workspace.py
 .gitignore
-app_err.txt
-app_out.txt
 main.py
 README.md
 requirements.txt
@@ -193,281 +189,6 @@ This section contains the contents of the repository's files.
 
 <file path="core/__init__.py">
 
-</file>
-
-<file path="docs/error_testing.md">
-JPG, PNG, WEBP, AVIF, GIF, BMP, TIFF, HEIC, ICO, SVG
-
-All format -> JPG 
-All format -> PNG 
-All format -> WEBP 
-All format -> AVIF 
-All format -> GIF 
-All format -> BMP 
-All format -> TIFF 
-All format -> HEIC 
-All format -> ICO 
-All format -> SVG 
-
-
-
-## Convert
-All format = JPG, PNG, WEBP, AVIF, GIF, BMP, TIFF, HEIC, ICO, SVG
-
-Test:
-All format -> JPG 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-- BMP = 'int' object has no attribute 'get'
-
-All format -> PNG 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-- BMP = 'int' object has no attribute 'get'
-
-All format -> WEBP 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-- BMP = 'int' object has no attribute 'get'
-
-All format -> AVIF 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-
-All format -> GIF 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-
-All format -> BMP 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-
-All format -> TIFF 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-- BMP = 'int' object has no attribute 'get'
-
-All format -> HEIC 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-
-All format -> ICO 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-
-All format -> SVG 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-
-
-
-
-
-## Compress
-All format = JPG, PNG, WEBP, TIFF
-
-Test:
-All format -> JPG 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-- BMP = 'int' object has no attribute 'get'
-
-All format -> PNG 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-- BMP = 'int' object has no attribute 'get'
-
-All format -> WEBP 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-- BMP = 'int' object has no attribute 'get'
-
-All format -> TIFF 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-- BMP = 'int' object has no attribute 'get'
-
-
-
-
-
-## Resize
-All format = JPG, PNG, WEBP, AVIF, BMP, TIFF, HEIC
-
-Test:
-All format -> JPG 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-- BMP = 'int' object has no attribute 'get'
-
-All format -> PNG 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-- BMP = 'int' object has no attribute 'get'
-
-All format -> WEBP 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-- BMP = 'int' object has no attribute 'get'
-
-All format -> AVIF
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-
-All format -> BMP
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-
-All format -> TIFF
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-- BMP = 'int' object has no attribute 'get'
-
-All format -> HEIC
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-
-
-
-
-
-## Crop
-All format = JPG, PNG, WEBP, BMP, TIFF
-
-All format -> JPG 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-- BMP = 'int' object has no attribute 'get'
-
-All format -> PNG 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-- BMP = 'int' object has no attribute 'get'
-
-All format -> WEBP 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-- BMP = 'int' object has no attribute 'get'
-
-All format -> BMP
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-
-All format -> TIFF
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-- BMP = 'int' object has no attribute 'get'
-
-
-
-
-
-## Transform
-All format = JPG, PNG, WEBP, BMP, TIFF
-
-All format -> JPG 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-- BMP = 'int' object has no attribute 'get'
-
-All format -> PNG 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-- BMP = 'int' object has no attribute 'get'
-
-All format -> WEBP 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-- BMP = 'int' object has no attribute 'get'
-
-All format -> BMP
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-
-All format -> TIFF
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-- BMP = 'int' object has no attribute 'get'
-
-
-
-## DPI
-All format = JPG, PNG, TIFF
-
-All format -> JPG 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-
-All format -> PNG 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-
-All format -> TIFF
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-
-
-
-
-
-## Metadata
-All format = JPG, PNG, TIFF, HEIC
-
-Test:
-All format -> JPG 
-Success
-
-All format -> PNG 
-Success
-
-All format -> TIFF
-Success
-
-All format -> HEIC
-Success
-
-
-
-
-
-## Color Space
-All format = JPG, PNG, TIFF
-
-All format -> JPG 
-Failed:
-- JPG = Invalid type for Profile
-- PNG = Invalid type for Profile
-- TIFF = Invalid type for Profile
-
-All format -> PNG 
-Failed:
-- JPG = Invalid type for Profile
-- PNG = Invalid type for Profile
-- TIFF = Invalid type for Profile
-
-All format -> TIFF
-Failed:
-- JPG = Invalid type for Profile
-- PNG = Invalid type for Profile
-- TIFF = Invalid type for Profile
-
-
-
-
-
-## Bit Depth
-All format = JPG, PNG, TIFF
-
-All format -> PNG 
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-
-All format -> TIFF
-Failed:
-- TIFF = dictionary update sequence element #0 has length 1; 2 is required
-
-
-Catatan error lainnya:
 </file>
 
 <file path="docs/PRD.md">
@@ -6020,14 +5741,6 @@ def apply_sidebar_style(widget):
 
 </file>
 
-<file path="app_err.txt">
-
-</file>
-
-<file path="app_out.txt">
-
-</file>
-
 <file path="app/application.py">
 import sys
 
@@ -10318,94 +10031,6 @@ class MetadataOptions(BaseProcessingOptions):
                 or name.lower().replace(" ", "_") in selected
             )
         self.update_ui()
-</file>
-
-<file path="ui/components/processing_options/processing_card.py">
-"""Reusable processing toggle card, styled using the global PixVault roles."""
-
-from PySide6.QtCore import Signal
-from PySide6.QtWidgets import QFrame, QVBoxLayout, QWidget
-
-from ui.components.processing_options.common.checkbox_field import CheckboxField
-from ui.components.processing_options.common.warning_label import WarningLabel
-from ui.styles.pixvault_theme import apply_page_theme, role
-
-
-class ProcessingCard(QWidget):
-    enabled_changed = Signal(bool)
-    settings_changed = Signal(dict)
-
-    def __init__(self, title, option_widget, parent=None):
-        super().__init__(parent)
-        self.title = str(title)
-        self.option_widget = option_widget
-        self.setup_ui()
-        apply_page_theme(self)
-
-    def setup_ui(self):
-        self.main_layout = QVBoxLayout(self)
-        self.main_layout.setContentsMargins(0, 0, 0, 0)
-        self.main_layout.setSpacing(0)
-        self.frame = role(QFrame(self), "card")
-        self.frame.setObjectName("processing_card")
-        self.card_layout = QVBoxLayout(self.frame)
-        self.card_layout.setContentsMargins(18, 18, 18, 18)
-        self.card_layout.setSpacing(12)
-
-        self.enable_field = CheckboxField(self.title, False)
-        self.enable_checkbox = self.enable_field.checkbox  # existing consumer API
-        self.card_layout.addWidget(self.enable_field)
-
-        self.warning = WarningLabel(self)
-        self.card_layout.addWidget(self.warning)
-
-        self.content = QWidget(self.frame)
-        self.content_layout = QVBoxLayout(self.content)
-        self.content_layout.setContentsMargins(0, 0, 0, 0)
-        self.content_layout.setSpacing(9)
-        self.content_layout.addWidget(self.option_widget)
-        self.card_layout.addWidget(self.content)
-        self.main_layout.addWidget(self.frame)
-        self.content.hide()
-        self.option_widget.setEnabled(False)
-
-        self.enable_field.value_changed.connect(self.toggle_enabled)
-        if hasattr(self.option_widget, "settings_changed"):
-            self.option_widget.settings_changed.connect(self.emit_settings)
-
-    def toggle_enabled(self, state):
-        enabled = bool(state)
-        self.content.setVisible(enabled)
-        self.option_widget.setEnabled(enabled)
-        self.enabled_changed.emit(enabled)
-        self.emit_settings()
-
-    def set_enabled(self, enabled):
-        self.enable_checkbox.setChecked(bool(enabled))
-
-    def is_enabled(self):
-        return self.enable_checkbox.isChecked()
-
-    def get_settings(self):
-        if not self.is_enabled():
-            return {}
-        settings = dict(self.option_widget.get_settings())
-        settings["enabled"] = True
-        return settings
-
-    def set_warning(self, message):
-        self.warning.show_warning(message)
-
-    def clear_warning(self):
-        self.warning.clear_warning()
-
-    def reset(self):
-        self.set_enabled(False)
-        self.option_widget.reset()
-        self.clear_warning()
-
-    def emit_settings(self, *_args):
-        self.settings_changed.emit(self.get_settings())
 </file>
 
 <file path="ui/components/processing_options/resize_options.py">
@@ -19730,7 +19355,6 @@ from PIL import Image
 from PySide6.QtCore import QEvent, Qt
 from PySide6.QtWidgets import (
     QBoxLayout,
-    QComboBox,
     QFrame,
     QHBoxLayout,
     QLabel,
@@ -19744,6 +19368,7 @@ from PySide6.QtWidgets import (
 
 from ui.components.drop_area import DropArea
 from ui.components.export_progress import ExportProgress
+from ui.components.format_options.common.dropdown_field import PremiumComboBox
 from ui.components.image_info_panel import ImageInfoPanel
 from ui.components.image_list_widget import ImageListWidget
 from ui.components.image_preview import ImagePreview
@@ -19961,7 +19586,7 @@ class BitDepthPage(QWidget):
         layout.addSpacing(5)
         layout.addWidget(self.text("OUTPUT FORMAT", "fieldTitle"))
 
-        self.format_box = role(QComboBox(), "field")
+        self.format_box = role(PremiumComboBox(), "field")
         self.format_box.setObjectName("bitdepth_format_box")
         self.format_box.setMinimumHeight(44)
         self.format_box.setCursor(Qt.CursorShape.PointingHandCursor)
@@ -20397,7 +20022,6 @@ from pathlib import Path
 from PySide6.QtCore import QEvent, Qt
 from PySide6.QtWidgets import (
     QBoxLayout,
-    QComboBox,
     QFrame,
     QHBoxLayout,
     QLabel,
@@ -20411,6 +20035,7 @@ from PySide6.QtWidgets import (
 
 from ui.components.drop_area import DropArea
 from ui.components.export_progress import ExportProgress
+from ui.components.format_options.common.dropdown_field import PremiumComboBox
 from ui.components.image_info_panel import ImageInfoPanel
 from ui.components.image_list_widget import ImageListWidget
 from ui.components.image_preview import ImagePreview
@@ -20651,7 +20276,7 @@ class CropPage(QWidget):
         layout.addSpacing(5)
         layout.addWidget(self.text("OUTPUT FORMAT", "fieldTitle"))
 
-        self.format_box = role(QComboBox(), "field")
+        self.format_box = role(PremiumComboBox(), "field")
         self.format_box.setObjectName("crop_format_box")
         self.format_box.setMinimumHeight(44)
         self.format_box.setCursor(Qt.CursorShape.PointingHandCursor)
@@ -21048,7 +20673,6 @@ from pathlib import Path
 from PySide6.QtCore import QEvent, Qt
 from PySide6.QtWidgets import (
     QBoxLayout,
-    QComboBox,
     QFrame,
     QHBoxLayout,
     QLabel,
@@ -21062,6 +20686,7 @@ from PySide6.QtWidgets import (
 
 from ui.components.drop_area import DropArea
 from ui.components.export_progress import ExportProgress
+from ui.components.format_options.common.dropdown_field import PremiumComboBox
 from ui.components.image_info_panel import ImageInfoPanel
 from ui.components.image_list_widget import ImageListWidget
 from ui.components.image_preview import ImagePreview
@@ -21288,7 +20913,7 @@ class DPIPage(QWidget):
         layout.addSpacing(5)
         layout.addWidget(self.text("OUTPUT FORMAT", "fieldTitle"))
 
-        self.format_box = role(QComboBox(), "field")
+        self.format_box = role(PremiumComboBox(), "field")
         self.format_box.setObjectName("dpi_format_box")
         self.format_box.setMinimumHeight(44)
         self.format_box.setCursor(Qt.CursorShape.PointingHandCursor)
@@ -21696,7 +21321,6 @@ from pathlib import Path
 from PySide6.QtCore import QEvent, Qt
 from PySide6.QtWidgets import (
     QBoxLayout,
-    QComboBox,
     QFrame,
     QHBoxLayout,
     QLabel,
@@ -21710,6 +21334,7 @@ from PySide6.QtWidgets import (
 
 from ui.components.drop_area import DropArea
 from ui.components.export_progress import ExportProgress
+from ui.components.format_options.common.dropdown_field import PremiumComboBox
 from ui.components.image_info_panel import ImageInfoPanel
 from ui.components.image_list_widget import ImageListWidget
 from ui.components.image_preview import ImagePreview
@@ -21953,7 +21578,7 @@ class MetadataPage(QWidget):
         layout.addSpacing(5)
         layout.addWidget(self.text("OUTPUT FORMAT", "fieldTitle"))
 
-        self.format_box = role(QComboBox(), "field")
+        self.format_box = role(PremiumComboBox(), "field")
         self.format_box.setObjectName("metadata_format_box")
         self.format_box.setMinimumHeight(44)
         self.format_box.setCursor(Qt.CursorShape.PointingHandCursor)
@@ -22395,7 +22020,6 @@ from pathlib import Path
 from PySide6.QtCore import QEvent, Qt
 from PySide6.QtWidgets import (
     QBoxLayout,
-    QComboBox,
     QFrame,
     QHBoxLayout,
     QLabel,
@@ -22409,6 +22033,7 @@ from PySide6.QtWidgets import (
 
 from ui.components.drop_area import DropArea
 from ui.components.export_progress import ExportProgress
+from ui.components.format_options.common.dropdown_field import PremiumComboBox
 from ui.components.image_info_panel import ImageInfoPanel
 from ui.components.image_list_widget import ImageListWidget
 from ui.components.image_preview import ImagePreview
@@ -22656,7 +22281,7 @@ class ResizePage(QWidget):
         layout.addSpacing(5)
         layout.addWidget(self.text("OUTPUT FORMAT", "fieldTitle"))
 
-        self.format_box = role(QComboBox(), "field")
+        self.format_box = role(PremiumComboBox(), "field")
         self.format_box.setObjectName("resize_format_box")
         self.format_box.setMinimumHeight(44)
         self.format_box.setCursor(Qt.CursorShape.PointingHandCursor)
@@ -23075,7 +22700,6 @@ from pathlib import Path
 from PySide6.QtCore import QEvent, Qt
 from PySide6.QtWidgets import (
     QBoxLayout,
-    QComboBox,
     QFrame,
     QHBoxLayout,
     QLabel,
@@ -23089,6 +22713,7 @@ from PySide6.QtWidgets import (
 
 from ui.components.drop_area import DropArea
 from ui.components.export_progress import ExportProgress
+from ui.components.format_options.common.dropdown_field import PremiumComboBox
 from ui.components.image_info_panel import ImageInfoPanel
 from ui.components.image_list_widget import ImageListWidget
 from ui.components.image_preview import ImagePreview
@@ -23325,7 +22950,7 @@ class TransformPage(QWidget):
         layout.addSpacing(5)
         layout.addWidget(self.text("OUTPUT FORMAT", "fieldTitle"))
 
-        self.format_box = role(QComboBox(), "field")
+        self.format_box = role(PremiumComboBox(), "field")
         self.format_box.setObjectName("transform_format_box")
         self.format_box.setMinimumHeight(44)
         self.format_box.setCursor(Qt.CursorShape.PointingHandCursor)
@@ -23740,7 +23365,6 @@ from pathlib import Path
 from PySide6.QtCore import QEvent, Qt
 from PySide6.QtWidgets import (
     QBoxLayout,
-    QComboBox,
     QFrame,
     QHBoxLayout,
     QLabel,
@@ -23754,6 +23378,7 @@ from PySide6.QtWidgets import (
 
 from ui.components.drop_area import DropArea
 from ui.components.export_progress import ExportProgress
+from ui.components.format_options.common.dropdown_field import PremiumComboBox
 from ui.components.image_info_panel import ImageInfoPanel
 from ui.components.image_list_widget import ImageListWidget
 from ui.components.image_preview import ImagePreview
@@ -24117,7 +23742,7 @@ class ColorSpacePage(QWidget):
 
         layout.addWidget(self.text("OUTPUT FORMAT", "fieldTitle"))
 
-        self.format_box = role(QComboBox(), "field")
+        self.format_box = role(PremiumComboBox(), "field")
 
         self.format_box.setObjectName("colorspace_format_box")
 
@@ -24763,7 +24388,6 @@ from pathlib import Path
 from PySide6.QtCore import QEvent, Qt
 from PySide6.QtWidgets import (
     QBoxLayout,
-    QComboBox,
     QFrame,
     QHBoxLayout,
     QLabel,
@@ -24777,6 +24401,7 @@ from PySide6.QtWidgets import (
 
 from ui.components.drop_area import DropArea
 from ui.components.export_progress import ExportProgress
+from ui.components.format_options.common.dropdown_field import PremiumComboBox
 from ui.components.format_options.format_options_panel import FormatOptionsPanel
 from ui.components.image_info_panel import ImageInfoPanel
 from ui.components.image_list_widget import ImageListWidget
@@ -25006,7 +24631,7 @@ class ConvertPage(QWidget):
         layout.addSpacing(5)
         layout.addWidget(self.text("TARGET FORMAT", "fieldTitle"))
 
-        self.format_box = role(QComboBox(), "field")
+        self.format_box = role(PremiumComboBox(), "field")
         self.format_box.setObjectName("convert_format_box")
         self.format_box.setMinimumHeight(44)
         self.format_box.setCursor(Qt.CursorShape.PointingHandCursor)
@@ -25331,7 +24956,6 @@ from pathlib import Path
 from PySide6.QtCore import QEvent, Qt
 from PySide6.QtWidgets import (
     QBoxLayout,
-    QComboBox,
     QFrame,
     QHBoxLayout,
     QLabel,
@@ -25345,6 +24969,7 @@ from PySide6.QtWidgets import (
 
 from ui.components.drop_area import DropArea
 from ui.components.export_progress import ExportProgress
+from ui.components.format_options.common.dropdown_field import PremiumComboBox
 from ui.components.image_info_panel import ImageInfoPanel
 from ui.components.image_list_widget import ImageListWidget
 from ui.components.image_preview import ImagePreview
@@ -25681,7 +25306,7 @@ class CompressPage(QWidget):
 
         layout.addWidget(self.text("OUTPUT FORMAT", "fieldTitle"))
 
-        self.format_box = role(QComboBox(), "field")
+        self.format_box = role(PremiumComboBox(), "field")
 
         self.format_box.setObjectName("compress_format_box")
 

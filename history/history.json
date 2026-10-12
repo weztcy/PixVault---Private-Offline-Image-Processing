@@ -1,1 +1,74 @@
-[]
+[
+    {
+        "id": "63f2d3b2-0c5f-406b-99dd-abf9009a7297",
+        "timestamp": "2026-10-12 19:29:04",
+        "source": "C:\\Users\\yohan\\OneDrive\\Pictures\\sample\\file_example_PNG_2100kB.png",
+        "output": "C:\\Users\\yohan\\OneDrive\\Pictures\\PixVault Export\\file_example_PNG_2100kB_compressed.tiff",
+        "format": "TIFF",
+        "operations": [
+            {
+                "type": "compression",
+                "mode": "target_size",
+                "size": 1024,
+                "unit": "kb",
+                "priority": "balanced"
+            }
+        ],
+        "status": "success",
+        "error": null
+    },
+    {
+        "id": "b40a6b0b-2aa4-42af-beb6-acf05ed88c6c",
+        "timestamp": "2026-10-12 19:29:04",
+        "source": "C:\\Users\\yohan\\OneDrive\\Pictures\\sample\\sample_1280\u00d7853.tiff",
+        "output": "C:\\Users\\yohan\\OneDrive\\Pictures\\PixVault Export\\sample_1280\u00d7853_compressed.tiff",
+        "format": "TIFF",
+        "operations": [
+            {
+                "type": "compression",
+                "mode": "target_size",
+                "size": 1024,
+                "unit": "kb",
+                "priority": "balanced"
+            }
+        ],
+        "status": "success",
+        "error": null
+    },
+    {
+        "id": "4f539079-ba3c-49c3-a1aa-9e46ae6eb4ce",
+        "timestamp": "2026-10-12 19:29:04",
+        "source": "C:\\Users\\yohan\\OneDrive\\Pictures\\sample\\sample-city-park-400x300.webp",
+        "output": "C:\\Users\\yohan\\OneDrive\\Pictures\\PixVault Export\\sample-city-park-400x300_compressed.tiff",
+        "format": "TIFF",
+        "operations": [
+            {
+                "type": "compression",
+                "mode": "target_size",
+                "size": 1024,
+                "unit": "kb",
+                "priority": "balanced"
+            }
+        ],
+        "status": "success",
+        "error": null
+    },
+    {
+        "id": "a1ee14af-3206-4870-b902-a08bfd8769fd",
+        "timestamp": "2026-10-12 19:29:05",
+        "source": "C:\\Users\\yohan\\OneDrive\\Pictures\\sample\\sample-photo-3840x2160.jpg",
+        "output": "C:\\Users\\yohan\\OneDrive\\Pictures\\PixVault Export\\sample-photo-3840x2160_compressed.tiff",
+        "format": "TIFF",
+        "operations": [
+            {
+                "type": "compression",
+                "mode": "target_size",
+                "size": 1024,
+                "unit": "kb",
+                "priority": "balanced"
+            }
+        ],
+        "status": "success",
+        "error": null
+    }
+]

@@ -26,7 +26,7 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("PixVault | Local Image Studio")
 
-        self.resize(1280, 800)
+        self.showMaximized()
 
         self.setup_services()
         self.setup_ui()
