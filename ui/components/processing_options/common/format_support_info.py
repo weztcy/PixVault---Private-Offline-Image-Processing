@@ -23,7 +23,13 @@ class FormatCard(QFrame):
         self.format_name = format_name
 
         self.setObjectName("format_card")
-        self.setFixedSize(120, 46)
+        # Width adapts to the format label it contains; only the height is
+        # kept fixed so every card in the strip stays the same size.
+        self.setFixedHeight(46)
+        self.setSizePolicy(
+            QSizePolicy.Policy.Preferred,
+            QSizePolicy.Policy.Fixed,
+        )
 
         self.setAttribute(
             Qt.WidgetAttribute.WA_StyledBackground,
@@ -53,9 +59,15 @@ class FormatCard(QFrame):
         name.setObjectName("format_name")
 
         name.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        # Never expand beyond the text itself, or the card would stretch
+        # to fill the scroll area instead of hugging its content.
+        name.setSizePolicy(
+            QSizePolicy.Policy.Maximum,
+            QSizePolicy.Policy.Fixed,
+        )
 
         layout.addWidget(indicator)
-        layout.addWidget(name, 1)
+        layout.addWidget(name, 0)
 
 
 # =====================
