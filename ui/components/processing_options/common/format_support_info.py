@@ -23,7 +23,7 @@ class FormatCard(QFrame):
         self.format_name = format_name
 
         self.setObjectName("format_card")
-        self.setFixedSize(100, 46)
+        self.setFixedSize(120, 46)
 
         self.setAttribute(
             Qt.WidgetAttribute.WA_StyledBackground,
@@ -66,7 +66,7 @@ class FormatCard(QFrame):
 class FormatSupportInfo(QWidget):
     SUPPORT_DATA = {
         "convert": [
-            "JPEG",
+            "JPG / JPEG",
             "PNG",
             "WEBP",
             "AVIF",
@@ -78,7 +78,7 @@ class FormatSupportInfo(QWidget):
             "SVG",
         ],
         "resize": [
-            "JPEG",
+            "JPG / JPEG",
             "PNG",
             "WEBP",
             "AVIF",
@@ -87,32 +87,32 @@ class FormatSupportInfo(QWidget):
             "HEIC",
         ],
         "crop": [
-            "JPEG",
+            "JPG / JPEG",
             "PNG",
             "WEBP",
             "BMP",
             "TIFF",
         ],
         "transform": [
-            "JPEG",
+            "JPG / JPEG",
             "PNG",
             "WEBP",
             "BMP",
             "TIFF",
         ],
         "compression": [
-            "JPEG",
+            "JPG / JPEG",
             "PNG",
             "WEBP",
             "TIFF",
         ],
         "dpi": [
-            "JPEG",
+            "JPG / JPEG",
             "PNG",
             "TIFF",
         ],
         "colorspace": [
-            "JPEG",
+            "JPG / JPEG",
             "PNG",
             "TIFF",
         ],
@@ -121,7 +121,7 @@ class FormatSupportInfo(QWidget):
             "TIFF",
         ],
         "metadata": [
-            "JPEG",
+            "JPG / JPEG",
             "TIFF",
             "HEIC",
         ],
