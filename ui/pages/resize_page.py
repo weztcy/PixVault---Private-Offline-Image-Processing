@@ -660,17 +660,3 @@ class ResizePage(QWidget):
 
     def apply_styles(self):
         apply_page_theme(self)
-
-        self.start_button.setEnabled(True)
-
-        self.cancel_button.hide()
-
-        self.progress.finished()
-
-    def resize_error(self, error):
-
-        self.start_button.setEnabled(True)
-
-        self.cancel_button.hide()
-
-        self.progress.failed(error)

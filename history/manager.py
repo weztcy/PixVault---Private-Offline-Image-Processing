@@ -1,11 +1,33 @@
 import json
+import os
+import sys
 import uuid
 from datetime import datetime
 from pathlib import Path
 
 
+def _default_storage_path():
+    """Pick a writable history location.
+
+    When running as a frozen PyInstaller executable the application folder is
+    often read-only (Program Files, extracted bundle, ...), so history is
+    stored under the user's AppData directory instead.
+    """
+    if getattr(sys, "frozen", False):
+        base = (
+            os.environ.get("APPDATA")
+            or os.environ.get("LOCALAPPDATA")
+            or str(Path.home())
+        )
+        return Path(base) / "PixVault" / "history.json"
+    return Path("history/history.json")
+
+
 class HistoryManager:
-    def __init__(self, storage_path="history/history.json"):
+    def __init__(self, storage_path=None):
+
+        if storage_path is None:
+            storage_path = _default_storage_path()
 
         self.storage_path = Path(storage_path)
 

@@ -2,16 +2,26 @@
 PixVault ICC Color Space Engine
 """
 
+import sys
 from io import BytesIO
 from pathlib import Path
+from typing import ClassVar
 
 from PIL import ImageCms
 
 
-class ColorSpaceProcessor:
-    PROFILE_DIR = Path(__file__).parent / "profiles"
+def _profile_directory():
+    """Resolve the bundled ICC profile directory for both source and frozen runs."""
+    meipass = getattr(sys, "_MEIPASS", None)
+    if getattr(sys, "frozen", False) and meipass:
+        return Path(meipass) / "processing" / "profiles"
+    return Path(__file__).parent / "profiles"
 
-    PROFILE_FILES = {
+
+class ColorSpaceProcessor:
+    PROFILE_DIR = _profile_directory()
+
+    PROFILE_FILES: ClassVar[dict[str, str]] = {
         "srgb": "sRGB.icc",
         "adobe_rgb": "AdobeRGB1998.icc",
         "display_p3": "DisplayP3.icc",
@@ -19,7 +29,7 @@ class ColorSpaceProcessor:
         "grayscale": "Gray.icc",
     }
 
-    INTENTS = {
+    INTENTS: ClassVar[dict[str, ImageCms.Intent]] = {
         "perceptual": ImageCms.Intent.PERCEPTUAL,
         "relative_colorimetric": ImageCms.Intent.RELATIVE_COLORIMETRIC,
         "saturation": ImageCms.Intent.SATURATION,

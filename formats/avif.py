@@ -2,9 +2,21 @@ from pathlib import Path
 
 from formats import BaseEncoder
 
+try:
+    import pillow_avif  # noqa: F401  (registers the Pillow AVIF plugin)
+
+    AVIF_AVAILABLE = True
+
+
+except ImportError:
+    AVIF_AVAILABLE = False
+
 
 class AVIFEncoder(BaseEncoder):
     def save(self, image, output_path, settings):
+
+        if not AVIF_AVAILABLE:
+            raise RuntimeError("AVIF support requires pillow-avif-plugin package")
 
         output = Path(output_path)
 

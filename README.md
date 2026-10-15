@@ -137,6 +137,42 @@ The main technologies and libraries listed in this project are:
 - tifffile
 - JSON for local history storage
 
+## 📦 Building an Executable (PyInstaller)
+
+PixVault can be packaged into a single Windows executable with PyInstaller.
+The repository includes a ready-to-use `PixVault.spec` file and the
+`packaging\build.bat` convenience script:
+
+```bat
+packaging\build.bat
+```
+
+Or run the steps manually from the project root:
+
+```bat
+call .venv\Scripts\activate.bat
+python tools\make_icon.py
+python -m PyInstaller --clean --noconfirm PixVault.spec
+```
+
+The build output is written to `dist\PixVault.exe`. Because PySide6, Pillow,
+NumPy, and the native HEIF/AVIF libraries are bundled, the single executable
+is large (roughly 80–100 MB) and takes a few seconds longer to launch the first
+time while PyInstaller extracts its bundle.
+
+Notes on the build configuration (`PixVault.spec`):
+- The ICC profiles under `processing\profiles` are bundled as data so the
+  color space engine keeps working from the frozen bundle.
+- `pillow-heif` distributes its native `_pillow_heif.pyd` and the libheif /
+  libde265 / libx265 DLLs directly inside `site-packages`; the spec collects
+  them into the bundle root where the plugin's loader looks for them.
+- `pillow-avif-plugin` is bundled and imported so AVIF conversion works; a
+  headless self-test can be started with `PixVault.exe --selftest`, which
+  writes a report to `%TEMP%\pixvault_selftest.txt`.
+- When running as an executable, processing history is stored under
+  `%APPDATA%\PixVault\history.json` instead of a folder next to the program,
+  keeping the installation directory read-only-safe.
+
 ## 🎯 Project Objectives
 
 This project was developed to:
